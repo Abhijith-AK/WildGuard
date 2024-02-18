@@ -1,0 +1,124 @@
+{%include "admin/admin_header.html"%}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+{%if q5%}
+    <table >
+        <tr>
+            <td align="center" colspan="2">
+                <label for="id_photo">
+                    <img src="/{{q5.animal_image}}" width="200px" alt="" id="image-preview">
+                    <input type="file" name="image" id="id_photo" style="display: none;">
+                </label>
+            </td>
+        </tr>        
+        <tr>
+            <th>Forest division: </th>
+            <td>
+                <select name="dname" id="">
+                   {%for i in q4%}
+                   <option value="{{i.id}}">{{i.division_name}}</option>
+                   {%endfor%}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Animal name: </th>
+            <td><input type="text" name="animal_name" id="" value="{{q5.animal_name}}"></td>
+        </tr>
+        <tr>
+            <th>Description: </th>
+            <td><textarea name="description" id="" cols="30" rows="10" >{{q5.animal_description}}</textarea></td>
+        </tr>
+        <tr>
+            <th>Safetytip: </th>
+            <td><input type="text" name="safetytip" id="" value="{{q5.safety_tips}}"></td>
+        </tr>
+       
+        <tr>
+            <td><input type="submit" value="Update" name="update"></td>
+        </tr>
+    </table>
+</form>
+{%else%}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <table>
+        <tr>
+            <th>Forest division: </th>
+            <td>
+                <select name="dname" id="">
+                   {%for i in q1%}
+                   <option value="{{i.id}}">{{i.division_name}}</option>
+                   {%endfor%}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Animal name: </th>
+            <td><input type="text" name="animal_name" id=""></td>
+        </tr>
+        <tr>
+            <th>Animal image: </th>
+            <td><input type="file" name="image" id=""></td>
+        </tr>
+        <tr>
+            <th>Description: </th>
+            <td><textarea name="description" id="" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <th>Safetytip: </th>
+            <td><input type="text" name="safetytip" id=""></td>
+        </tr>
+        
+        <tr>
+            <td><input type="submit" value="ADD" name="submit"></td>
+        </tr>
+    </table>
+</form>
+<form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Division</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Safety tip</th>
+        </tr>
+        {%for i in q2%}
+        <tr>
+            <th>{{i.animal_name}}</th>
+            <th>{{i.FOREST_DIVISION.division_name}}</th>
+            <th><img src="/{{i.animal_image}}" width="100px" alt=""></th>
+            <th>{{i.animal_description}}</th>
+            <th>{{i.safety_tips}}</th>
+            <th></th>
+            <td><a href="update_animal/{{i.id}}">UPDATE</a></td>
+            <td><a href="delete_animal/{{i.id}}">DELETE</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</form>
+{%endif%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#id_photo').change(function(e) {
+            console.log("File selected"); // Debugging statement
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#image-preview').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+{%include "footer.html"%}

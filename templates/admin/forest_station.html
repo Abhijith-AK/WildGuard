@@ -1,0 +1,85 @@
+{%include "admin/admin_header.html"%}
+{%if q4%}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Division name: </th>
+            <td>
+                <select name="dname" id="">
+                    {%for i in q5%}
+                    <option value="{{i.id}}">{{i.division_name}}</option>
+                    {%endfor%}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Station name: </th>
+            <td><input type="text" name="sname" id="" value="{{q4.station_name}}"></td>
+        </tr>
+        <tr>
+            <th>Place: </th>
+            <td><input type="text" name="place" id="" value="{{q4.place}}"></td>
+        </tr>
+        <tr>
+            <th>Contact number: </th>
+            <td><input type="text" name="contactno" id="" value="{{q4.contact_number}}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="UPDATE" name="update"></td>
+        </tr>
+    </table>
+</form>
+{%else%}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>Division name: </th>
+            <td>
+                <select name="dname" id="">
+                    {%for i in q1%}
+                    <option value="{{i.id}}">{{i.division_name}}</option>
+                    {%endfor%}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Station name: </th>
+            <td><input type="text" name="sname" id=""></td>
+        </tr>
+        <tr>
+            <th>Place: </th>
+            <td><input type="text" name="place" id=""></td>
+        </tr>
+        <tr>
+            <th>Contact number: </th>
+            <td><input type="text" name="contactno" id=""></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="ADD" name="submit"></td>
+        </tr>
+    </table>
+</form>
+<form>
+    <table>
+        <tr>
+            <th>Station</th>
+            <th>Division</th>
+            <th>Place</th>
+            <th>Contact no</th>
+        </tr>
+        {%for i in q3%}
+        <tr>
+            <th>{{i.station_name}}</th>
+            <th>{{i.FOREST_DIVISION.division_name}}</th>
+            <th>{{i.place}}</th>
+            <th>{{i.contact_number}}</th>
+            <td><a href="update_station/{{i.id}}">UPDATE</a></td>
+            <td><a href="delete_station/{{i.id}}">DELETE</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</form>
+{%endif%}
+{%include "footer.html"%}

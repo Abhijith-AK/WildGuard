@@ -1,0 +1,25 @@
+{%include "forest_officer/view_emergency_message.html"%}
+
+<form>
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Description</th>
+        </tr>
+
+        {%for i in q1%}
+
+        <tr>
+            <th>{{i.message_image}}</th>
+            <th>{{i.description}}</th>
+
+            <td><a href="/send_reply/{{i.id}}">REPLY</a></td>
+
+        </tr>
+        {%endfor%}
+    </table>
+</form>
+
+
+
+{%include "footer.html"%}

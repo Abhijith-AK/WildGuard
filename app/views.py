@@ -5,7 +5,8 @@ from  . models import *
 # Create your views here.
 
 def index(request):
-    return render(request,"index.html")
+    return render(request,"publicindex.html")
+    return render(request,'index.html')
 
 def adminhome(request):
     return render(request,'admin/admin_home.html')
@@ -14,20 +15,34 @@ def adminhome(request):
 def forest_officer_home(request):
     return render(request,'forest_officer/officer_home.html')
 
+
 def login(request):
-    if 'submit' in request.POST:
-        username = request.POST['username']
-        password = request.POST['password']
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        q = Login.objects.get(username=username,password=password)
-        # request.session['lid'] =q.pk
+        try:
+            login_obj = Login.objects.get(username=username, password=password)
+        except Login.DoesNotExist:
+            # If username and password do not match, or user does not exist
+            error_message = "Invalid username or password."
+            return render(request, 'login.html', {'error_message': error_message})
 
-        if q.usertype == "admin":
+        request.session['lid'] = login_obj.pk
+
+        if login_obj.usertype == "admin":
             return redirect(adminhome)
-        elif q.usertype == "forest_officer":
-            return redirect(forest_officer_home)
-        
-    return render(request,"login.html")
+        elif login_obj.usertype == "forest_officer":
+            try:
+                forest_officer_obj = Forest_Officer.objects.get(LOGIN_id=login_obj.pk)
+                request.session['fid'] = forest_officer_obj.pk
+                return redirect(forest_officer_home)
+            except Forest_Officer.DoesNotExist:
+                error_message = "Forest officer record not found."
+                return render(request, 'login.html', {'error_message': error_message})
+
+    return render(request, "login.html")
+
 
 def register(request):
     return render(request,"register.html")
@@ -113,11 +128,19 @@ def update_animal(request,id):
     if 'update' in request.POST:
         dname=request.POST['dname']
         animal_name=request.POST['animal_name']
-        image = request.FILES['image']
+
+        # image = request.FILES['image']
         description = request.POST['description']
         safetytip = request.POST['safetytip']
+
+        if 'image' in request.FILES:
+            image=request.FILES['image']
+            q5.animal_image=image
+            q5.save()
+
+
         q5.animal_name=animal_name
-        q5.animal_image=image
+        # q5.animal_image=image
         q5.animal_description=description
         q5.safety_tips=safetytip
         q5.FOREST_DIVISION_id=dname
@@ -187,11 +210,11 @@ def delete_officer(request,id):
 
 
 def sendAlert(request):
-    q2 = Alert.objects.all()
+    q2 = Alert.objects.filter(FOREST_OFFICER_id=request.session['fid'])
     if 'submit' in request.POST:
         alerttext = request.POST['alerttext']
         date = request.POST['date']
-        q1 = Alert(description=alerttext,date=date)
+        q1 = Alert(description=alerttext,date=date,FOREST_OFFICER_id=request.session['fid'])
         q1.save()
         return HttpResponse("<script>alert('added....');window.location='/alerts'</script>")  
     return render(request,"forest_officer/officer_send_alert.html",{'q2':q2})
@@ -217,4 +240,16 @@ def send_reply(request,id):
 def emmergency_message(request):
     q1 = Emergency_Message.objects.all()
     return render(request,"forest_officer/view_emergency_message.html",{'q1':q1})
-    
+
+def officer_chat(request):
+    q1 = Chat.objects.filter(FOREST_OFFICER_id=request.session['fid'])
+    return render(request,"forest_officer/officer_chat.html")
+
+def officer_complaint(request):
+    q1 = Complaints.objects.all()
+    return render(request,"forest_officer/officer_complaints.html",{'q1':q1})
+
+def officer_notifications(request):
+    q1 = Notification.objects.all()
+    return render(request,"forest_officer/officer_notifications.html",{'q1':q1})
+

@@ -1,44 +1,69 @@
-{%include "admin/admin_header.html"%}
-{%if q3%}
+{% include "admin/admin_header.html" %}
 
-    <form action="" method="post">
-        {% csrf_token %}
+<div class="container mt-5">
+    <h1 class="h1 text-center mb-5">Forest Divisions</h1>
 
-        <table>
-            <tr>
-                <th>Division name: </th>
-                <td><input type="text" name="dname" id="" value="{{q3.division_name}}"></td>
-                <td><input type="submit" value="UPDATE" name="update"></td>
-            </tr>
-        </table>
-    </form>
-{%else%}
-    <form action="" method="post">
-        {% csrf_token %}
+    {% if q3 %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="" class="form needs-validation" method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="dname">Division name:</label>
+                    <input type="text" name="dname" id="dname" class="form-control" value="{{q3.division_name}}" required>
+                    <div class="invalid-feedback">Please enter a division name.</div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2" name="update">Update</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="" method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="dname">Division name:</label>
+                    <input type="text" name="dname" id="dname" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a division name.</div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2" name="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Forest Division</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in q2 %}
+                    <tr>
+                        <td>{{i.division_name}}</td>
+                        <td>
+                            <a href="update_division/{{i.id}}" class="btn btn-success">Update</a>
+                            <a href="delete_division/{{i.id}}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
 
-        <table>
-            <tr>
-                <th>Division name: </th>
-                <td><input type="text" name="dname" id=""></td>
-                <td><input type="submit" value="ADD" name="submit"></td>
-            </tr>
-        </table>
-    </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        $("input[name='dname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+    });
+</script>
 
-    <form>
-        <table>
-            <tr>
-                <th>Forest Division</th>
-            </tr>
-            {%for i in q2%}
-            <tr>
-                <th>{{i.division_name}}</th>
-                <td><a href="update_division/{{i.id}}">UPDATE</a></td>
-                <td><a href="delete_division/{{i.id}}">DELETE</a></td>
-            </tr>
-            {%endfor%}
-        </table>
-    </form>
-
-{%endif%}
-{%include "footer.html"%}
+{% include "footer.html" %}

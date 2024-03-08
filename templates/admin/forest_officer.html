@@ -1,107 +1,147 @@
-{%include "admin/admin_header.html"%}
-{%if q4%}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <th>First name:</th>
-            <td><input type="text" name="fname" id="" value="{{q4.fname}}"></td>
-        </tr>
-        <tr>
-            <Th>Last name: </Th>
-            <td><input type="text" name="lname" id="" value="{{q4.lname}}"></td>
-        </tr>
-        <tr>
-            <th>Place: </th>
-            <td><input type="text" name="place" id="" value="{{q4.place}}"></td>
-        </tr>
-        <tr>
-            <th>Phone no: </th>
-            <td><input type="text" name="phno" id="" value="{{q4.phone}}"></td>
-        </tr>
-        <tr>
-            <th>Designation: </th>
-            <td>
-                <select name="designation">
-                    <option value="SI">SI</option>
-                    <option value="PC">PC</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th><input type="submit" value="Update" name="update"></th>
-        </tr>
-    </table>
-</form>
-{%else%}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        <tr>
-            <th>First name:</th>
-            <td><input type="text" name="fname" id=""></td>
-        </tr>
-        <tr>
-            <Th>Last name: </Th>
-            <td><input type="text" name="lname" id=""></td>
-        </tr>
-        <tr>
-            <th>Place: </th>
-            <td><input type="text" name="place" id=""></td>
-        </tr>
-        <tr>
-            <th>Phone no: </th>
-            <td><input type="text" name="phno" id=""></td>
-        </tr>
-        <tr>
-            <th>Email: </th>
-            <td><input type="email" name="email" id=""></td>
-        </tr>
-        <tr>
-            <th>Password: </th>
-            <td><input type="password" name="password" id=""></td>
-        </tr>
-        <tr>
-            <th>Designation: </th>
-            <td>
-                <select name="designation">
-                    <option value="SI">SI</option>
-                    <option value="PC">PC</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th><input type="submit" value="Add" name="submit"></th>
-        </tr>
-    </table>
-</form>
-<form>
-    <table>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Place</th>
-            <th>Phone</th>
-            <th>Designation</th>
-        </tr>
-        {%for i in q3%}
-        <tr>
-            <th>{{i.fname}}</th>
-            <th>{{i.lname}}</th>
-            <th>{{i.place}}</th>
-            <th>{{i.phone}}</th>
-            <th>{{i.designation}}</th>
+{% include "admin/admin_header.html" %}
 
-            <td><a href="update_officer/{{i.id}}">UPDATE</a></td>
-            <td><a href="delete_officer/{{i.id}}">DELETE</a></td>
-            <td><a href=""></a></td>
-        </tr>
-        {%endfor%}
-    </table>
-</form>
-{%endif%}
-{%include "footer.html"%}
+<div class="container mt-5">
+    <h1 class="h1 text-center mb-5">Forest Officers</h1>
+
+    {% if q4 %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="" class="form needs-validation" method="post" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fname">First name:</label>
+                    <input type="text" name="fname" id="fname" class="form-control" value="{{q4.fname}}" required>
+                    <div class="invalid-feedback">Please enter first name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last name:</label>
+                    <input type="text" name="lname" id="lname" class="form-control" value="{{q4.lname}}" required>
+                    <div class="invalid-feedback">Please enter last name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="place">Place:</label>
+                    <input type="text" name="place" id="place" class="form-control" value="{{q4.place}}" required>
+                    <div class="invalid-feedback">Please enter place.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phno">Phone no:</label>
+                    <input type="text" name="phno" id="phno" class="form-control" value="{{q4.phone}}" maxlength="10" required>
+                    <div class="invalid-feedback">Please enter valid phone number.</div>
+                </div>
+                <div class="form-group">
+                    <label for="designation">Designation:</label>
+                    <select name="designation" id="designation" class="form-control" required>
+                        <option value="SI" {% if q4.designation == "SI" %} selected {% endif %}>SI</option>
+                        <option value="PC" {% if q4.designation == "PC" %} selected {% endif %}>PC</option>
+                        <option value="3" {% if q4.designation == "3" %} selected {% endif %}>3</option>
+                        <option value="4" {% if q4.designation == "4" %} selected {% endif %}>4</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2" name="update">Update</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="" method="post" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fname">First name:</label>
+                    <input type="text" name="fname" id="fname" class="form-control" required>
+                    <div class="invalid-feedback">Please enter first name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last name:</label>
+                    <input type="text" name="lname" id="lname" class="form-control" required>
+                    <div class="invalid-feedback">Please enter last name.</div>
+                </div>
+                <div class="form-group">
+                    <label for="place">Place:</label>
+                    <input type="text" name="place" id="place" class="form-control" required>
+                    <div class="invalid-feedback">Please enter place.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phno">Phone no:</label>
+                    <input type="text" name="phno" id="phno" class="form-control" maxlength="10" required>
+                    <div class="invalid-feedback">Please enter valid phone number.</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a password.</div>
+                </div>
+                <div class="form-group">
+                    <label for="designation">Designation:</label>
+                    <select name="designation" id="designation" class="form-control" required>
+                        <option value="SI">SI</option>
+                        <option value="PC">PC</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2" name="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Place</th>
+                        <th>Phone</th>
+                        <th>Designation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in q3 %}
+                    <tr>
+                        <td>{{i.fname}}</td>
+                        <td>{{i.lname}}</td>
+                        <td>{{i.place}}</td>
+                        <td>{{i.phone}}</td>
+                        <td>{{i.designation}}</td>
+                        <td>
+                            <a href="update_officer/{{i.id}}" class="btn btn-success">Update</a>
+                            <a href="delete_officer/{{i.id}}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        $("input[name='fname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+        $("input[name='lname']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+        });
+        $("input[name='place']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z0-9()/. ]/g, ''));
+        });
+        $("input[name='phno']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        });
+    });
+</script>
+
+{% include "footer.html" %}

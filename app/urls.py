@@ -26,6 +26,9 @@ urlpatterns = [
     path('alerts',views.sendAlert),
     path('delete_alert/<id>',views.delete_alert),
     path('complaints',views.view_complaint),
-    path('send_reply/<id>',views.send_reply)
-
+    path('send_reply/<id>',views.send_reply),
+    path('emergency_messages',views.emmergency_message),
+    path('officer_chat',views.officer_chat),
+    path('officer_complaint',views.officer_complaint), 
+    path('officer_notifications',views.officer_notifications)
 ]

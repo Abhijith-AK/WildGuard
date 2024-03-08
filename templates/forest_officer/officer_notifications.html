@@ -1,0 +1,31 @@
+
+{% include "forest_officer/officer_header.html" %}
+
+<div class="container mt-5">
+    <h1 class="h1 text-center">Notifications</h1>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for notification in q1 %}
+                        <tr>
+                            <td>{{ notification.title }}</td>
+                            <td>{{ notification.description }}</td>
+                            <td>{{ notification.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% include "footer.html" %}

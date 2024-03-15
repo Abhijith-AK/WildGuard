@@ -2,95 +2,137 @@
 
 <div class="container mt-5">
     <h1 class="h1 text-center mb-5">Forest Officers</h1>
-
     {% if q4 %}
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="" class="form needs-validation" method="post" novalidate>
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="fname">First name:</label>
-                    <input type="text" name="fname" id="fname" class="form-control" value="{{q4.fname}}" required>
-                    <div class="invalid-feedback">Please enter first name.</div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" class="form needs-validation" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <label for="fname" class="col-sm-3 col-form-label">First name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="fname" id="fname" class="form-control" value="{{ q4.fname }}" required>
+                                <div class="invalid-feedback">Please enter first name.</div>
+                            </div>
+                        </div>
+                        <!-- Add similar rows for other form elements -->
+                        <div class="row mb-3">
+                            <label for="lname" class="col-sm-3 col-form-label">Last name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lname" id="lname" class="form-control" value="{{ q4.lname }}" required>
+                                <div class="invalid-feedback">Please enter last name.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="place" class="col-sm-3 col-form-label">Place:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="place" id="place" class="form-control" value="{{ q4.place }}" required>
+                                <div class="invalid-feedback">Please enter place.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="phno" class="col-sm-3 col-form-label">Phone no:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="phno" id="phno" class="form-control" value="{{ q4.phone }}" maxlength="10" required>
+                                <div class="invalid-feedback">Please enter valid phone number.</div>
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="row mb-3">
+                            <label for="designation" class="col-sm-3 col-form-label">Designation:</label>
+                            <div class="col-sm-9">
+                                <select name="designation" id="designation" class="form-control" required>
+                                    <option value="SI" {% if q4.designation == "SI" %} selected {% endif %}>SI</option>
+                                    <option value="PC" {% if q4.designation == "PC" %} selected {% endif %}>PC</option>
+                                    <option value="3" {% if q4.designation == "3" %} selected {% endif %}>3</option>
+                                    <option value="4" {% if q4.designation == "4" %} selected {% endif %}>4</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a designation.</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="update">Update</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="lname">Last name:</label>
-                    <input type="text" name="lname" id="lname" class="form-control" value="{{q4.lname}}" required>
-                    <div class="invalid-feedback">Please enter last name.</div>
-                </div>
-                <div class="form-group">
-                    <label for="place">Place:</label>
-                    <input type="text" name="place" id="place" class="form-control" value="{{q4.place}}" required>
-                    <div class="invalid-feedback">Please enter place.</div>
-                </div>
-                <div class="form-group">
-                    <label for="phno">Phone no:</label>
-                    <input type="text" name="phno" id="phno" class="form-control" value="{{q4.phone}}" maxlength="10" required>
-                    <div class="invalid-feedback">Please enter valid phone number.</div>
-                </div>
-                <div class="form-group">
-                    <label for="designation">Designation:</label>
-                    <select name="designation" id="designation" class="form-control" required>
-                        <option value="SI" {% if q4.designation == "SI" %} selected {% endif %}>SI</option>
-                        <option value="PC" {% if q4.designation == "PC" %} selected {% endif %}>PC</option>
-                        <option value="3" {% if q4.designation == "3" %} selected {% endif %}>3</option>
-                        <option value="4" {% if q4.designation == "4" %} selected {% endif %}>4</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2" name="update">Update</button>
-            </form>
+            </div>
         </div>
     </div>
-    {% else %}
+{% else %}
+    <!-- Add Officer Form -->
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="" method="post" class="needs-validation" novalidate>
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="fname">First name:</label>
-                    <input type="text" name="fname" id="fname" class="form-control" required>
-                    <div class="invalid-feedback">Please enter first name.</div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <label for="fname" class="col-sm-3 col-form-label">First name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="fname" id="fname" class="form-control" required>
+                                <div class="invalid-feedback">Please enter first name.</div>
+                            </div>
+                        </div>
+                        <!-- Add similar rows for other form elements -->
+                        <div class="row mb-3">
+                            <label for="lname" class="col-sm-3 col-form-label">Last name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="lname" id="lname" class="form-control" required>
+                                <div class="invalid-feedback">Please enter last name.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="place" class="col-sm-3 col-form-label">Place:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="place" id="place" class="form-control" required>
+                                <div class="invalid-feedback">Please enter place.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="phno" class="col-sm-3 col-form-label">Phone no:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="phno" id="phno" class="form-control" maxlength="10" required>
+                                <div class="invalid-feedback">Please enter valid phone number.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="Email" class="col-sm-3 col-form-label">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email" name="email" id="email" class="form-control" required>
+                                <div class="invalid-feedback">Please enter a email.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-sm-3 col-form-label">Password:</label>
+                            <div class="col-sm-9">
+                                <input type="password" name="password" id="password" class="form-control" required>
+                                <div class="invalid-feedback">Please enter a password.</div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="designation" class="col-sm-3 col-form-label">Designation:</label>
+                            <div class="col-sm-9">
+                                <select name="designation" id="designation" class="form-control" required>
+                                    <option value="">Select Designation</option>
+                                    <option value="SI">SI</option>
+                                    <option value="PC">PC</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a designation.</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" name="submit">Add</button>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="lname">Last name:</label>
-                    <input type="text" name="lname" id="lname" class="form-control" required>
-                    <div class="invalid-feedback">Please enter last name.</div>
-                </div>
-                <div class="form-group">
-                    <label for="place">Place:</label>
-                    <input type="text" name="place" id="place" class="form-control" required>
-                    <div class="invalid-feedback">Please enter place.</div>
-                </div>
-                <div class="form-group">
-                    <label for="phno">Phone no:</label>
-                    <input type="text" name="phno" id="phno" class="form-control" maxlength="10" required>
-                    <div class="invalid-feedback">Please enter valid phone number.</div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a valid email address.</div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a password.</div>
-                </div>
-                <div class="form-group">
-                    <label for="designation">Designation:</label>
-                    <select name="designation" id="designation" class="form-control" required>
-                        <option value="SI">SI</option>
-                        <option value="PC">PC</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary mt-2" name="submit">Add</button>
-            </form>
+            </div>
         </div>
     </div>
-    {% endif %}
+    <!-- End Add Officer Form -->
+{% endif %}
+
 </div>
+
 
 <div class="container mt-5">
     <div class="row">

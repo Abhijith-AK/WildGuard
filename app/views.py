@@ -5,8 +5,8 @@ from  . models import *
 # Create your views here.
 
 def index(request):
-    return render(request,"publicindex.html")
     return render(request,'index.html')
+    return render(request,"publicindex.html")
 
 def adminhome(request):
     return render(request,'admin/admin_home.html')
@@ -36,7 +36,7 @@ def login(request):
             try:
                 forest_officer_obj = Forest_Officer.objects.get(LOGIN_id=login_obj.pk)
                 request.session['fid'] = forest_officer_obj.pk
-                return redirect(forest_officer_home)
+                return redirect(emmergency_message)
             except Forest_Officer.DoesNotExist:
                 error_message = "Forest officer record not found."
                 return render(request, 'login.html', {'error_message': error_message})
@@ -210,13 +210,13 @@ def delete_officer(request,id):
 
 
 def sendAlert(request):
-    q2 = Alert.objects.filter(FOREST_OFFICER_id=request.session['fid'])
+    q2 = Alert.objects.filter(FOREST_OFFICER_id=request.session.get('fid'))
     if 'submit' in request.POST:
         alerttext = request.POST['alerttext']
         date = request.POST['date']
-        q1 = Alert(description=alerttext,date=date,FOREST_OFFICER_id=request.session['fid'])
+        q1 = Alert(description=alerttext,date=date,FOREST_OFFICER_id=request.session['fid']) 
         q1.save()
-        return HttpResponse("<script>alert('added....');window.location='/alerts'</script>")  
+        return HttpResponse("<script>alert('added....');window.location='/alerts'</script>")   
     return render(request,"forest_officer/officer_send_alert.html",{'q2':q2})
 
 def delete_alert(request,id):
@@ -246,10 +246,23 @@ def officer_chat(request):
     return render(request,"forest_officer/officer_chat.html")
 
 def officer_complaint(request):
-    q1 = Complaints.objects.all()
+    q1 = Complaints.objects.all().order_by('date').values()
     return render(request,"forest_officer/officer_complaints.html",{'q1':q1})
 
 def officer_notifications(request):
-    q1 = Notification.objects.all()
+    q1 = Notification.objects.all().order_by('date').values()
     return render(request,"forest_officer/officer_notifications.html",{'q1':q1})
 
+
+
+def logout(request):
+    confirmation_script = """
+        var confirmLogout = confirm('Do you want to proceed to logout?');
+        if (confirmLogout) {
+        window.location='/';
+        }
+        else{
+        window.history.back();
+        }
+    """
+    return HttpResponse("<script>" + confirmation_script + "</script>")

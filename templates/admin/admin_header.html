@@ -44,6 +44,16 @@
       }
   </style>
    -->
+   <script>
+    function logout() {
+    // Perform logout action here, such as clearing session/local storage, redirecting to the login page, etc.
+    // For example, if using session storage:
+    sessionStorage.clear();
+    
+    // Display alert message
+    alert('You have been logged out.');
+}
+   </script>
   </head>
 
   <body style="min-height: 100vh; display: flex; flex-direction: column;">
@@ -64,4 +74,5 @@
             <a href="complaints" class="nav-item nav-link {% if request.path == '/complaints' %}active{% endif %}">Complaints</a>
         </div>
     </div>
+    <a href="/logout" class="btn btn-outline-secondary nav-item ml-3">Logout <i class="fa fa-arrow-right ms-3"></i></a>
 </nav>

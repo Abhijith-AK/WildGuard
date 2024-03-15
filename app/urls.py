@@ -30,5 +30,6 @@ urlpatterns = [
     path('emergency_messages',views.emmergency_message),
     path('officer_chat',views.officer_chat),
     path('officer_complaint',views.officer_complaint), 
-    path('officer_notifications',views.officer_notifications)
+    path('officer_notifications',views.officer_notifications),
+    path('logout',views.logout),
 ]

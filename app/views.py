@@ -256,13 +256,17 @@ def officer_notifications(request):
 
 
 def logout(request):
-    confirmation_script = """
+     if 'lid' in request.session:
+        del request.session['lid']
+     if 'fid' in request.session:
+        del request.session['fid']
+     confirmation_script = """
         var confirmLogout = confirm('Do you want to proceed to logout?');
         if (confirmLogout) {
-        window.location='/';
+        window.location='/login';
         }
         else{
         window.history.back();
         }
     """
-    return HttpResponse("<script>" + confirmation_script + "</script>")
+     return HttpResponse("<script>" + confirmation_script + "</script>")

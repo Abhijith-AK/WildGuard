@@ -1,5 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render,redirect
+from django.db.models import Max
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime
 from  . models import *
 
 # Create your views here.
@@ -13,7 +16,10 @@ def adminhome(request):
 
 
 def forest_officer_home(request):
-    return render(request,'forest_officer/officer_home.html')
+    q1 = Forest_Officer.objects.filter(id=request.session.get('fid')).first()
+    # print(q1)  # Add this line for debugging
+    return render(request, 'forest_officer/officer_home.html', {'q1': q1})
+
 
 
 def login(request):
@@ -31,12 +37,12 @@ def login(request):
         request.session['lid'] = login_obj.pk
 
         if login_obj.usertype == "admin":
-            return redirect(adminhome)
+            return redirect(forestDivision)
         elif login_obj.usertype == "forest_officer":
             try:
                 forest_officer_obj = Forest_Officer.objects.get(LOGIN_id=login_obj.pk)
                 request.session['fid'] = forest_officer_obj.pk
-                return redirect(emmergency_message)
+                return redirect(forest_officer_home)
             except Forest_Officer.DoesNotExist:
                 error_message = "Forest officer record not found."
                 return render(request, 'login.html', {'error_message': error_message})
@@ -240,10 +246,43 @@ def send_reply(request,id):
 def emmergency_message(request):
     q1 = Emergency_Message.objects.all()
     return render(request,"forest_officer/view_emergency_message.html",{'q1':q1})
+    
 
-def officer_chat(request):
-    q1 = Chat.objects.filter(FOREST_OFFICER_id=request.session['fid'])
-    return render(request,"forest_officer/officer_chat.html")
+def officer_chat(request, id):
+    # Fetch messages sent by users to the forest officer
+    messages = Chat.objects.filter(FOREST_OFFICER_id=request.session.get('fid'), USER_id=id).order_by('date')
+    user = User.objects.get(id=id)
+    user_name = f"{user.fname} {user.lname}"
+    
+    if 'submit' in request.POST:
+        message = request.POST['message']
+        date = datetime.now()
+        formatted_date = date.strftime("%y-%m-%d %H:%M")
+        q1 = Chat(FOREST_OFFICER_id=request.session['fid'],USER_id=user.pk,message=message,date=formatted_date,usertype='officer')
+        q1.save()
+    return render(request, "forest_officer/officer_chat.html", {'messages': messages, 'user_name': user_name})
+
+# @csrf_exempt
+# def send_message(request):
+#     if request.method == 'POST':
+#         # Get the message and other necessary data from the POST request
+#         message = request.POST.get('message')
+#         user_id = request.session.get('user_id')
+#         officer_id = request.session.get('officer_id')
+
+#         # Check if all required data is available
+#         if message and user_id and officer_id:
+#             # Create a new Chat object and save it to the database
+#             chat = Chat(FOREST_OFFICER_id=officer_id, USER_id=user_id, message=message, date=datetime.now(), usertype='officer')
+#             chat.save()
+#             # Return a success response
+#             return JsonResponse({'success': True})
+#         else:
+#             # Return an error response if required data is missing
+#             return JsonResponse({'success': False, 'error': 'Missing required data'})
+
+#     # Return an error response for non-POST requests
+#     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 def officer_complaint(request):
     q1 = Complaints.objects.all().order_by('date').values()
@@ -253,7 +292,16 @@ def officer_notifications(request):
     q1 = Notification.objects.all().order_by('date').values()
     return render(request,"forest_officer/officer_notifications.html",{'q1':q1})
 
+def chat_list(request):
+    users = Chat.objects.filter(FOREST_OFFICER_id=request.session.get('fid')).values('USER').annotate(last_message=Max('date'))   
+     # Fetch user details
+    user_details = []
+    for user_data in users:
+        user = User.objects.get(id=user_data['USER'])
+        last_message = Chat.objects.filter(USER_id=user_data['USER'], date=user_data['last_message']).first()
+        user_details.append({'user': user, 'last_message': last_message})
 
+    return render(request, "forest_officer/officer_chat_list.html", {'user_details': user_details})
 
 def logout(request):
      if 'lid' in request.session:

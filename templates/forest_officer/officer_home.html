@@ -1,111 +1,79 @@
-{%include "forest_officer/officer_header.html"%}
+{% include "forest_officer/officer_header.html" %}
 
 <!-- Facts Start -->
-<div
-class="container-xxl bg-primary facts my-5 py-5 wow fadeInUp"
-data-wow-delay="0.1s"
->
-<div class="container py-5">
-  <div class="row g-4">
-    <div
-      class="col-md-6 col-lg-3 text-center wow fadeIn"
-      data-wow-delay="0.1s"
-    >
-      <i class="fa fa-paw fa-3x text-primary mb-3"></i>
-      <h1 class="text-white mb-2" data-toggle="counter-up">145</h1>
-      <p class="text-white mb-0">Total Animals detected</p>
+<div class="container-xxl bg-primary facts my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                <i class="fa fa-paw fa-3x text-primary mb-3"></i>
+                <h1 class="text-white mb-2" data-toggle="counter-up">145</h1>
+                <p class="text-white mb-0">Total Animals detected</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                <i class="fa fa-users fa-3x text-primary mb-3"></i>
+                <h1 class="text-white mb-2" data-toggle="counter-up">12450</h1>
+                <p class="text-white mb-0">Total Users</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                <i class="fa fa-certificate fa-3x text-primary mb-3"></i>
+                <h1 class="text-white mb-2" data-toggle="counter-up">678</h1>
+                <p class="text-white mb-0">Total Alerts</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
+                <h1 class="text-white mb-2" data-toggle="counter-up">13524</h1>
+                <p class="text-white mb-0">Save Wild Life</p>
+            </div>
+        </div>
     </div>
-    <div
-      class="col-md-6 col-lg-3 text-center wow fadeIn"
-      data-wow-delay="0.3s"
-    >
-      <i class="fa fa-users fa-3x text-primary mb-3"></i>
-      <h1 class="text-white mb-2" data-toggle="counter-up">12450</h1>
-      <p class="text-white mb-0">Total Users</p>
-    </div>
-    <div
-      class="col-md-6 col-lg-3 text-center wow fadeIn"
-      data-wow-delay="0.5s"
-    >
-      <i class="fa fa-certificate fa-3x text-primary mb-3"></i>
-      <h1 class="text-white mb-2" data-toggle="counter-up">678</h1>
-      <p class="text-white mb-0">Total Alerts</p>
-    </div>
-    <div
-      class="col-md-6 col-lg-3 text-center wow fadeIn"
-      data-wow-delay="0.7s"
-    >
-      <i class="fa fa-shield-alt fa-3x text-primary mb-3"></i>
-      <h1 class="text-white mb-2" data-toggle="counter-up">13524</h1>
-      <p class="text-white mb-0">Save Wild Life</p>
-    </div>
-  </div>
-</div>
 </div>
 <!-- Facts End -->
 
 
-<div id="notifications" class="container mt-5">
-    <h2 class="mb-4">Notifications</h2>
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card service-card">
-                <div class="card-body">
-                    <h5 class="card-title">Notification Title</h5>
-                    <p class="card-text">Notification Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="card-text"><small class="text-muted">Date: January 20, 2024</small></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card service-card">
-                <div class="card-body">
-                    <h5 class="card-title">Notification Title</h5>
-                    <p class="card-text">Notification Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="card-text"><small class="text-muted">Date: January 19, 2024</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="reports" class="container mt-5">
-    <h2 class="mb-4">Reports</h2>
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card service-card">
-                <div class="card-body">
-                    <h5 class="card-title">Report Title</h5>
-                    <p class="card-text">Report Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="card-text"><small class="text-muted">Date: January 18, 2024</small></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card service-card">
-                <div class="card-body">
-                    <h5 class="card-title">Report Title</h5>
-                    <p class="card-text">Report Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="card-text"><small class="text-muted">Date: January 17, 2024</small></p>
+<!-- Profile Section -->
+<section class="profile-section my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Forest Officer Profile</h5>
+                    </div>
+                    <div class="card-body ms-3">
+                        <div class="profile-info">
+                            <div class="profile-info-item">
+                                <strong>First Name:</strong>
+                                <span>{{ q1.fname }}</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <strong>Last Name:</strong>
+                                <span>{{ q1.lname }}</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <strong>Place:</strong>
+                                <span>{{ q1.place }}</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <strong>Email:</strong>
+                                <span>{{ q1.email }}</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <strong>Phone:</strong>
+                                <span>{{ q1.phone }}</span>
+                            </div>
+                            <div class="profile-info-item">
+                                <strong>Designation:</strong>
+                                <span>{{ q1.designation }}</span>
+                            </div>
+                            <!-- Add other profile info items here -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- End Profile Section -->
 
-<div id="profile" class="container mt-5">
-    <h2 class="mb-4">Profile</h2>
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card service-card">
-                <div class="card-body">
-                    <h5 class="card-title">Forest Officer Name</h5>
-                    <p class="card-text">Forest Officer Profile Details. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p class="card-text"><small class="text-muted">Email: officer@wildguard.com</small></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-{%include "footer.html"%}
+{% include "footer.html" %}

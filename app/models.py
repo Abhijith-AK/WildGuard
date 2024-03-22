@@ -72,11 +72,12 @@ class Chat(models.Model):
     FOREST_OFFICER = models.ForeignKey(Forest_Officer,on_delete=models.CASCADE)
     USER = models.ForeignKey(User,on_delete=models.CASCADE)
     message = models.CharField(max_length=100,default='SOME STRING') 
-    date = models.CharField(max_length=20,default='SOME STRING') 
+    date = models.CharField(max_length=100,default='SOME STRING') 
+    usertype = models.CharField(max_length=20)
    
 class Emergency_Message(models.Model):
     USER = models.ForeignKey(User,on_delete=models.CASCADE)
-    message_image = models.ImageField()
+    message_image = models.ImageField(upload_to='static/animal')
     description = models.CharField(max_length=100,default='SOME STRING') 
 
 

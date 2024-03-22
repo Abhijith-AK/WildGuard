@@ -1,21 +1,84 @@
-{%include "forest_officer/officer_header.html"%}
+{% include "forest_officer/inpage_header.html" %}
 
-<div class="container ">
-    <h1 class="text-center my-4 mt-5">Chat Page</h1>
-    <div id="chat-messages" class="mb-4 mt-5">
-        <!-- Display chat messages here -->
+<div class="container"> 
+    <h1 class="text-center my-4 mt-5"> Chat Page with {{ user_name }}</h1>
+    <div id="chat-messages-container" class="mb-4 mt-5">
+        <div id="chat-messages" class="messages">
+            {% for message in messages %}
+                <div class="message-container d-flex {% if message.usertype == 'officer' %}  justify-content-end  {% else %}  align-self-start {% endif %}">
+                    <div class="message  {% if message.usertype == 'officer'%} bg-secondary {%else%} bg-primary{%endif%} p-2 text-white  ">
+                        <p>{{ message.message }}</p>
+                        <span class="timestamp ">{{ message.date }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <form id="message-form">
+
+    <form id="message-form" method="post">
+        {% csrf_token %} 
         <div class="input-group">
-            <input type="text" id="message-input" class="form-control" placeholder="Type your message...">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-primary">Send</button>
+            <input type="text" id="message-input" class="form-control" name="message" placeholder="Type your message...">
+            <div class="input-group-append bg-primary p-2">
+                <input type="submit" class="btn btn-primary p-2" value="Send" name="submit">
             </div>
         </div>
     </form>
 </div>
 
-   <!-- Include custom JavaScript for chat functionality -->
-   <!-- <script src="{ static 'js/chat_page.js' }"></script> -->
+<style>
+#chat-messages-container {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
 
-{%include "footer.html"%}
+.messages {
+    padding-right: 20px !important; /* Adjust for scrollbar width */
+    margin-bottom: 0 !important; /* Remove margin to prevent extra space */
+}
+
+.message-container {
+    margin-bottom: 15px !important;
+}
+
+.message {
+    display: inline-block !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+}
+
+.timestamp {
+    display: flex;    
+    justify-content: end;
+    font-size: 0.8rem !important;
+    color: #e9d5d5 !important;
+}
+
+.text-left .message {
+    background-color: #007bff !important;
+}
+
+.text-right .message {
+    background-color: #6c757d !important;
+}
+
+.sender {
+    font-size: 0.9rem !important;
+    font-weight: bold !important;
+    margin-top: 5px !important;
+}
+</style>
+
+<script>
+document.getElementById("backButton").addEventListener("click", function() {
+    window.location.href = "/officer_chat_list"; // Redirect to chat list page
+});
+
+// Scroll to the bottom of the chat messages container
+document.addEventListener("DOMContentLoaded", function() {
+    var chatMessagesContainer = document.getElementById("chat-messages-container");
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+});
+</script>
+
+{% include "footer.html" %}

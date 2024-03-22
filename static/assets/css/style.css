@@ -401,6 +401,45 @@
 }
 
 
+.message-container {
+    margin-bottom: 15px;
+}
+
+.message {
+    display: inline-block;
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.officer-message {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #007bff; /* Blue color for officer's messages */
+    color: white;
+}
+
+.user-message {
+    padding: 10px ;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #6c757d; /* Gray color for user's messages */
+    color: white;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.sender {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
 /*** Membership ***/
 .membership-item {
     padding: 45px 30px;
@@ -578,3 +617,6 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+
+

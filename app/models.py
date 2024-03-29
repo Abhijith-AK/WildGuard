@@ -55,7 +55,7 @@ class Complaints(models.Model):
 
 class Notification(models.Model):
     title = models.CharField(max_length=20,default='SOME STRING') 
-    description = models.CharField(max_length=100,default='SOME STRING') 
+    description = models.CharField(max_length=1000,default='SOME STRING') 
     date = models.CharField(max_length=20,default='SOME STRING')     
       
 class Allocate(models.Model):

@@ -26,7 +26,7 @@ WildGuard is a comprehensive wildlife monitoring and management system designed 
 1. Clone the repository:
 
     ```
-    git clone https://github.com/username/WildGuard.git
+    git clone https://github.com/Abhijith-AK/WildGuard.git
     ```
 
 2. Install dependencies:

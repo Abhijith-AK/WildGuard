@@ -1,0 +1,97 @@
+{%include 'adminheader.html'%}
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-xl-6 col-lg-8">
+                <h1>WILD ANIMAL DETECTION<span></span></h1>
+                <h2>"The animals of the world exist for their own reasons." </h2>
+                <p>Scroll down to see more content</p>
+                <div class="down-arrow">&#9660;</div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</section>
+<!-- End Hero -->
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>WILD ANIMAL DETECTION</h2>
+            <p>CONTACT DETAILS</p>
+        </div>
+        <img src="../static/assets/img/under31.png" style="margin-left: -60px;margin-top:-70px" height="200px" alt="">
+
+
+
+
+        {%if data['up']%}
+        <form action="" method="post">
+            <table align="center" style="width : 800px;" class="table">
+                <tr>
+                    <th>NAME</th>
+                    <td><input type="text" name="name" value="{{data['up'][0]['name']}}"></td>
+                </tr>
+                <tr>
+                    <th>CONTACT NUMBER</th>
+                    <td><input type="text" name="num" value="{{data['up'][0]['contact']}}"></td>
+                </tr>
+                <tr>
+                    <th><input type="submit" name="update" class="btn btn-success" value="UPDATE"></th>
+                </tr>
+            </table>
+        </form>
+
+        {%else%}
+
+
+
+        <form action="" method="post">
+            <table align="center" style="width : 800px;" class="table">
+                <tr>
+                    <th>NAME</th>
+                    <td><input type="text" name="name" required></td>
+                </tr>
+                <tr>
+                    <th>CONTACT NUMBER</th>
+                    <td>  <input type="text" id="contact" name="num" pattern="[0-9]{10}" title="Please enter a 10-digit contact number" required maxlength="10"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input type="submit" class="btn btn-success" name="submit" value="ADD"></th>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br><br>
+
+
+        <table align="center" style="width : 800px;" class="table">
+            <tr>
+                <th>NAME</th>
+                <th>CONTACT NUMBER</th>
+            </tr>
+            {%for i in data['view']%}
+            <tr>
+                <td>{{i['name']}}</td>
+                <td>{{i['contact']}}</td>
+                <td><a href="?action=update&id={{ i['contact_id'] }}" class="btn btn-success">UPDATE</a></td>
+                <td><a href="?action=delete&id={{ i['contact_id'] }}" class="btn btn-danger">DELETE</a></td>
+
+            </tr>
+            {%endfor%}
+        </table>
+        {%endif%}
+    </div>
+</section>
+
+{%include 'footer.html'%}

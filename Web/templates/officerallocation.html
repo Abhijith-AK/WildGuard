@@ -1,0 +1,56 @@
+{%include 'adminheader.html'%}
+
+
+   <!-- ======= Hero Section ======= -->
+   <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>WILD ANIMAL DETECTION<span></span></h1>
+          <h2>"The animals of the world exist for their own reasons." </h2>
+          <p>Scroll down to see more content</p>
+          <div class="down-arrow">&#9660;</div>        </div>
+      </div>
+
+
+
+      
+
+    </div>
+  </section><!-- End Hero -->
+
+
+
+
+
+<table>
+    <tr>
+        <th>Slno</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>PLACE</th>
+        <th>PHONE</th>
+        <th>EMAIL</th>
+        <th>DESIGNATION</th>
+    </tr>
+    {%for i in data['viewoff']%}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i['fname']}}</td>
+        <td>{{i['lname']}}</td>
+        <td>{{i['place']}}</td>
+        <td>{{i['phone']}}</td>
+        <td>{{i['email']}}</td>
+        <td>{{i['designation']}}</td>
+        <td><a href="?action=assign&id={{i['officer_id']}}">ASSIGN</a></td>
+     
+    </tr>
+    {%endfor%}
+</table>
+
+
+
+
+
+{%include 'footer.html'%}

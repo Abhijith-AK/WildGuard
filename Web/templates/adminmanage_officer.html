@@ -1,0 +1,173 @@
+{%include 'adminheader.html'%}
+
+
+{%include 'adminheader.html'%}
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-xl-6 col-lg-8">
+                <h1>WILD ANIMAL DETECTION<span></span></h1>
+                <h2>"The animals of the world exist for their own reasons." </h2>
+                <p>Scroll down to see more content</p>
+                <div class="down-arrow">&#9660;</div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</section><!-- End Hero -->
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>WILD ANIMAL DETECTION</h2>
+            <p>MANAGE OFFICER</p>
+        </div>
+        <img align="left" src="../static/assets/img/under31.png" style="margin-left: -60px;margin-top:-70px"
+            height="200px" alt="">
+
+        <img align="left" style="margin-left: -100px;" src="../static/assets/img/officer_new.png" alt="">
+
+
+
+
+        {%if data['officerview']%}
+        <form action="" method="post">
+            <table align="center" class="table" style="width: 500px;margin-top:150px">
+                <tr>
+                    <th>FIRST NAME</th>
+                    <td><input type="text" name="fname" value="{{data['officerview'][0]['fname']}}"></td>
+                </tr>
+                <tr>
+                    <th>LAST NAME</th>
+                    <td><input type="text" name="lname" value="{{data['officerview'][0]['lname']}}"></td>
+                </tr>
+                <tr>
+                    <th>PLACE</th>
+                    <td><input type="text" name="place" value="{{data['officerview'][0]['place']}}"></td>
+                </tr>
+                <tr>
+                    <th>PHONE</th>
+                    <td><input type="text" name="phone" value="{{data['officerview'][0]['phone']}}"></td>
+                </tr>
+                <tr>
+                    <th>EMAIL</th>
+                    <td><input type="email" name="email" value="{{data['officerview'][0]['email']}}"></td>
+                </tr>
+                <tr>
+                    <th>DESIGNATION</th>
+                    <td><input type="text" name="designation" value="{{data['officerview'][0]['designation']}}"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input type="submit" name="update" class="btn btn-success" value="UPDATE"></th>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br><br><br><br><br><br>
+
+        {%else%}
+
+        <form action="" method="post">
+            <table align="center" class="table" style="width: 500px;margin-top:100px">
+                <tr>
+                    <th>FIRST NAME</th>
+                    <td><input type="text" name="fname" required></td>
+                </tr>
+                <tr>
+                    <th>LAST NAME</th>
+                    <td><input type="text" name="lname" required></td>
+                </tr>
+                <tr>
+                    <th>PLACE</th>
+                    <td><input type="text" name="place" required></td>
+                </tr>
+                <tr>
+                    <th>PHONE</th>
+                    <td><input type="text" name="phone" required></td>
+                </tr>
+                <tr>
+                    <th>EMAIL</th>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <th>DESIGNATION</th>
+                    <td><input type="text" name="designation" required></td>
+                </tr>
+                <tr>
+                    <th>USERNAME</th>
+                    <td><input type="text" name="uname" required></td>
+                </tr>
+                <tr>
+                    <th>PASSWORD</th>
+                    <td><input type="password" name="pass" required></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input type="submit" name="submit" value="REGISTER" class="btn btn-success"></th>
+                </tr>
+            </table>
+        </form>
+
+        <br><br><br><br><br>
+    </div>
+</section>
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>WILD ANIMAL DETECTION</h2>
+            <p>OFFICER DETAILS</p>
+        </div>
+        <img src="../static/assets/img/under31.png" style="margin-left: -60px;margin-top:-70px" height="200px" alt="">
+
+
+
+
+        <table align="center" class="table">
+            <tr>
+                <th>Slno</th>
+                <th>FIRST NAME</th>
+                <th>LAST NAME</th>
+                <th>PLACE</th>
+                <th>PHONE</th>
+                <th>EMAIL</th>
+                <th>DESIGNATION</th>
+            </tr>
+            {%for i in data['view']%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{i['fname']}}</td>
+                <td>{{i['lname']}}</td>
+                <td>{{i['place']}}</td>
+                <td>{{i['phone']}}</td>
+                <td>{{i['email']}}</td>
+                <td>{{i['designation']}}</td>
+                <td><a href="?action=update&id={{ i['officer_id'] }}" class="btn btn-success">UPDATE</a></td>
+                <td><a href="?action=delete&id={{ i['officer_id'] }}" class="btn btn-danger">DELETE</a></td>
+
+            </tr>
+            {%endfor%}
+        </table>
+
+        {%endif%}
+    </div>
+
+</section>
+
+
+
+
+
+{%include 'footer.html'%}

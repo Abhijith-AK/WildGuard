@@ -1,0 +1,239 @@
+{%include 'adminheader.html'%}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+      <div class="col-xl-6 col-lg-8">
+        <h1>WILD ANIMAL DETECTION<span></span></h1>
+        <h2>"The animals of the world exist for their own reasons." </h2>
+        <p>Scroll down to see more content</p>
+        <div class="down-arrow">&#9660;</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- End Hero -->
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>WILD ANIMAL DETECTION</h2>
+      <p>MANAGE ANIMALS</p>
+
+    </div>
+    <img src="../static/assets/img/lion4.webp" style="border-radius: 10px;" alt="">
+  </div>
+
+
+
+  <form action="" method="post" enctype="multipart/form-data" style="margin-top: -400px;margin-left:550px">
+    <table align="center" style="width : 500px;" class="table">
+      <tr>
+        <th>Forest Station</th>
+        <td><select name="divid" id="" style="width: 195px;">
+            {%for i in data['forest']%}
+            <option value="{{i['forest_division_id']}}">{{i['division_name']}}</option>
+            {%endfor%}
+          </select></td>
+      </tr>
+      <tr>
+        <th>Animal Name</th>
+        <td><input type="text" name="animal" required></td>
+      </tr>
+      <tr>
+        <th>Animal Image</th>
+        <td><input type="file" name="image" required></td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td><input type="submit" name="submit" class="btn btn-success" value="Add"></td>
+      </tr>
+    </table>
+  </form>
+
+  <br><br><br><br><br><br><br><br><br>
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>WILD ANIMAL DETECTION</h2>
+        <p>ADDED WILD ANIMALS</p>
+      </div>
+
+
+
+
+
+      <div class="card-container">
+        {% for i in data['view'] %}
+        <div class="card" style="background-image: url(../static/assets/img/bg.png);background-size:contain">
+          <img src="{{i['animal_image']}}" height="100px" width="100px" alt="">
+          <h4>{{ i['fname'] }} {{ i['lname'] }}</h4>
+          <p style="font-size: 20px;"><strong>FOREST DIVISION:</strong> {{ i['division_name'] }}</p>
+          <p style="font-size: 20px;"><strong>ANIMAL NAME:</strong> {{ i['animal_name'] }}</p>
+          <div class="btn-container">
+            <a class="btn btn-danger" href="?action=delete&id={{i['animal_id']}}">REMOVE</a>
+
+
+          </div>
+        </div>
+        {% endfor %}
+  </section>
+
+  <!-- <table align="center" style="width : 800px;" class="table">
+    <tr>
+        <th>Forest Divison</th>
+        <th>Animal Name</th>
+        <th>Animal Image</th>
+    </tr>
+    {%for i in data['view']%}
+    <tr>
+        <td>{{i['division_name']}}</td>
+        <td>{{i['animal_name']}}</td>
+        <td><img src="{{i['animal_image']}}" height="100px" width="100px" alt=""></td>
+        <td><a href="?action=delete&id={{i['animal_id']}}">DELETE</a></td>
+
+    </tr>
+    {%endfor%}
+</table> -->
+</section>
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>ANIMALS</h2>
+      <p>WILD ANIMALS</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box" style="background-image: url(static/assets/img/lion.webp);">
+
+          <h4><a href="">LION</a></h4>
+          <p> “A lion sleeps in the heart of every brave man.”</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box" style="background-image: url(static/assets/img/front-view-wild-tiger-nature.jpg);">
+          <h4><a href="">TIGER</a></h4>
+          <p>"A tiger does not shout its tigritude, it acts."</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box" style="background-image: url(static/assets/img/elephant.jpg);">
+          <h4><a href="">ELEPHANT</a></h4>
+          <p>“Elephants are magnificent creatures.”</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+        <div class="icon-box" style="background-image: url(static/assets/img/wolf.jpg);">
+          <h4><a href="">WOLF</a></h4>
+          <p>"The wolf on the hill is not as hungry as the wolf climbing the hill."</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box" style="background-image: url(static/assets/img/panther.jpg);">
+          <h4><a href="">BLACK PANTHER</a></h4>
+          <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box" style="background-image: url(static/assets/img/hyna.jpg);">
+          <h4><a href="">HIENNA</a></h4>
+          <p>“A lion does not flinch at laughter coming from a hyena.”</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- End Services Section -->
+
+
+<style>
+  p {
+    color: white;
+  }
+</style>
+
+
+
+
+<style>
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .card {
+    background-image: url(../static/assets/img/bg2.png);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .card h4 {
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    margin: 5px 0;
+  }
+
+  .btn-container {
+    margin-top: 10px;
+  }
+
+  .btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+  }
+
+  p,
+  h4 {
+    color: white;
+  }
+
+  .card:hover {
+    background-image: url(../static/assets/img/userback2.png);
+    border: 2px red solid;
+  }
+</style>
+
+
+
+
+{%include 'footer.html'%}

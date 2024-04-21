@@ -1,0 +1,87 @@
+{%include 'adminheader.html'%}
+
+
+
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>WILD ANIMAL DETECTION<span></span></h1>
+          <h2>"The animals of the world exist for their own reasons." </h2>
+          <p>Scroll down to see more content</p>
+          <div class="down-arrow">&#9660;</div>
+        </div>
+      </div>
+
+
+
+      
+
+    </div>
+  </section><!-- End Hero -->
+
+   <!-- ======= Services Section ======= -->
+   <section id="services" class="services"  >
+    <div class="container" data-aos="fade-up" >
+
+      <div class="section-title" >
+        <h2>WILD ANIMAL DETECTION</h2>
+        <p>MANAGE FOREST CAMERA</p>
+
+
+<form action="" method="post">
+<table>
+    <tr>
+        <th>CAMERA NAME</th>
+        <td style="color: black;"><input type="text" name="cname" class="form-control"></td>
+
+    </tr>
+    <tr>
+        <th style="font-size: 25px; color: rgb(255, 255, 255);">LATITUDE</th>
+        <td style="color: black;"><input type="text" name="latitude" id="slati"  class="form-control"></td>	
+        
+        <td><a onclick="myFunction()"  class="btn btn-danger" required>View Map</a></td>
+    </tr>
+    <tr>
+        <th style="font-size: 25px; color: rgb(255, 255, 255);">LONGITUDE</th>
+        <td style="color: black;"><input type="text" name="longitude" id="elongi"  required  class="form-control"></td>	
+    </tr>
+<tr>
+    <th><input type="submit" name="submit" value="ADD" class="btn btn-success"></th>
+</tr>
+</table>
+</form>
+<div>
+    <td>
+        <div id="dvMap" style="width: 600px; height: 500px;"></div>
+        </td>
+</div>
+
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3MPnSnyWwNmpnVEFkaddVvy_GWtxSejs&sensor=false"></script>
+<script type="text/javascript">
+// window.onload = function () {
+function myFunction() {
+var mapOptions = {
+center: new google.maps.LatLng(9.9763482, 76.286272),
+zoom: 14,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var infoWindow = new google.maps.InfoWindow();
+var latlngbounds = new google.maps.LatLngBounds();
+var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+google.maps.event.addListener(map, 'click', function (e) {
+alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+document.getElementById('slati').value = e.latLng.lat();
+document.getElementById('elongi').value = e.latLng.lng();
+
+
+});
+}
+</script>
+
+
+{%include 'footer.html'%}

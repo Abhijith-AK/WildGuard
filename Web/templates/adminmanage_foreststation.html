@@ -1,0 +1,217 @@
+{%include 'adminheader.html'%}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>WILD ANIMAL DETECTION<span></span></h1>
+          <h2>"The animals of the world exist for their own reasons." </h2>
+          <p>Scroll down to see more content</p>
+          <div class="down-arrow">&#9660;</div>
+        </div>
+      </div>
+
+
+
+      
+
+    </div>
+  </section><!-- End Hero -->
+
+   <!-- ======= Services Section ======= -->
+   <section id="services" class="services"  >
+    <div class="container" data-aos="fade-up" >
+
+      <div class="section-title" >
+        <h2>WILD ANIMAL DETECTION</h2>
+        <p>MANAGE FOREST STATION</p>
+
+      </div>
+      <img src="../static/assets/img/hut.jpg" height="200px" style="border-radius: 30px;" alt="">
+      <h4 style="margin-left: 450px;margin-top:-130px">“The forest is a quiet place if only the best birds sing.“  </h4>
+     <br><br><br><br><br>
+
+
+{%if data['up']%}
+<form action=""method="post">
+    <table>
+     
+        <tr>
+            <th>Station Name</th>
+            <td><input type="text" name="station" value="{{data['up'][0]['station_name']}}"></td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td><input type="text" name="place" value="{{data['up'][0]['place']}}"></td>
+        </tr>
+        <tr>
+            <th>Contact_number</th>
+            <td><input type="text" name="cnum" value="{{data['up'][0]['contact_number']}}"></td>
+        </tr>
+        <tr>
+            <th><input type="submit" name="update" value="UPDATE"></th>
+        </tr>
+    </table>
+</form>
+
+{%else%}
+
+
+<form action="" method="post">
+    <table align="center" style="width: 800px; border-collapse: collapse; margin-top: 20px;" class="table">
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Forest Division</th>
+            <td style="border: 1px solid #ddd; padding: 8px;">
+                <select name="divid" id="" style="width: 100%;">
+                    {%for i in data['forest']%}
+                    <option value="{{i['forest_division_id']}}">{{i['division_name']}}</option>
+                    {%endfor%}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Station Name</th>
+            <td style="border: 1px solid #ddd; padding: 8px;"><input type="text" name="station" style="width: 100%;" required></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Place</th>
+            <td style="border: 1px solid #ddd; padding: 8px;"><input type="text" name="place" style="width: 100%;" required></td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 8px;">Contact Number</th>
+            <td style="border: 1px solid #ddd; padding: 8px;"><input type="text" name="cnum" style="width: 100%;" required></td>
+        </tr>
+        <tr>
+            <th colspan="2" style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+                <input type="submit" name="submit" value="Add" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+            </th>
+        </tr>
+    </table>
+</form>
+
+
+<!-- <form action=""method="post">
+    <table align="center" style="width : 800px;" class="table">
+        <tr>
+            <th>Forest Station</th>
+           <td><select name="divid" id="">
+            {%for i in data['forest']%}
+            <option value="{{i['forest_division_id']}}">{{i['division_name']}}</option>
+            {%endfor%}
+           </select></td>
+        </tr>
+        <tr>
+            <th>Station Name</th>
+            <td><input type="text" name="station"></td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td><input type="text" name="place"></td>
+        </tr>
+        <tr>
+            <th>Contact_number</th>
+            <td><input type="text" name="cnum"></td>
+        </tr>
+        <tr>
+            <th><input type="submit" name="submit" value="Add"></th>
+        </tr>
+    </table>
+</form> -->
+
+
+
+<table align="center" style="width : 800px;" class="table">
+    <tr>
+        <th>Slno</th>
+        <th>Forest Division</th>
+        <th>Station Name</th>
+        <th>Place</th>
+        <th>Contact Number</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    {%for i in data['view']%}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i['division_name']}}</td>
+        <td>{{i['station_name']}}</td>
+        <td>{{i['place']}}</td>
+        <td>{{i['contact_number']}}</td>
+        <td><a href="?action=update&id={{ i['forest_station_id'] }}" class="btn btn-success">UPDATE</a></td>
+        <td><a href="?action=delete&id={{ i['forest_station_id'] }}" class="btn btn-danger">DELETE</a></td>
+        <td><a href="/managecamera?id={{i['forest_station_id']}}" class="btn btn-primary">CAMERA</a></td>
+
+    </tr>
+    {%endfor%}
+</table>
+
+{%endif%}
+
+
+
+</div>
+</section>
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        background-color: #ffffff;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ced4da;
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        color: #0c0c0c;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 16px);
+        padding: 10px;
+        margin: 5px 0 15px 0;
+        display: inline-block;
+        border: 1px solid #ced4da;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{%include 'footer.html'%}

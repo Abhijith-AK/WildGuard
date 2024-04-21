@@ -1,0 +1,169 @@
+{%include 'adminheader.html'%}
+
+
+   <!-- ======= Hero Section ======= -->
+   <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>WILD ANIMAL DETECTION</h1>
+          <h2>"The animals of the world exist for their own reasons." </h2>
+          <p>Scroll down to see more content</p>
+          <div class="down-arrow">&#9660;</div>
+        </div>
+      </div>
+
+
+
+      
+
+    </div>
+  </section><!-- End Hero -->
+  <br><br><br>
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services"  >
+    <div class="container" data-aos="fade-up" >
+
+      <div class="section-title" >
+        <h2>WILD ANIMAL DETECTION</h2>
+        <p>MANAGE FOREST DIVISION</p>
+      </div>
+
+
+      <img src="../static/assets/img/tree2.png" style="margin-left:-180px;margin-top:00px">
+      <img src="../static/assets/img/map2.png" style="margin-top: -800px;margin-left:500px">
+
+
+      
+   
+
+
+
+{%if data['up']%}
+<form action=""method="post" style="margin-top: -400px;" >
+    <table>
+        <tr>
+            <th>forest division_name</th>
+        </tr>
+        <tr>
+            <th><input type="text" name="division" value="{{data['up'][0]['division_name']}}"></th>
+        </tr>
+        <tr>
+            <th><input type="submit" name="update" value="update"></th>
+        </tr>
+    </table>
+</form>
+
+{%else%}
+
+
+
+<form action="" method="post" style="margin-top: -400px;" >
+    <table>
+        <tr>
+            <th>Forest Division Name</th>
+        </tr>
+        <tr>
+            <th><input type="text" name="division"></th>
+        </tr>
+        <tr>
+            <th><input type="submit" name="submit" value="Add"></th>
+        </tr>
+    </table>
+</form>
+
+
+<!-- <form action=""method="post">
+    <table>
+        <tr>
+            <th>forest division_name</th>
+        </tr>
+        <tr>
+            <th><input type="text" name="division"></th>
+        </tr>
+        <tr>
+            <th><input type="submit" name="submit" value="add"></th>
+        </tr>
+    </table>
+</form> -->
+
+
+<table align="center" style="width : 800px;" class="table">
+    <tr>
+        <th>Sl no</th>
+        <th>Division Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {%for i in data['view']%}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i['division_name']}}</td>
+        <td><a href="?action=update&id={{ i['forest_division_id'] }}" class="btn btn-success">UPDATE</a></td>
+        <td><a href="?action=delete&id={{ i['forest_division_id'] }}" class="btn btn-danger">DELETE</a></td>
+
+    </tr>
+    {%endfor%}
+</table>
+
+
+{%endif%}
+</div>
+
+</div>
+</section><!-- End Services Section -->
+
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th {
+        text-align: left;
+        padding: 8px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
+
+{%include 'footer.html'%}

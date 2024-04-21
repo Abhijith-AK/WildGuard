@@ -1,0 +1,129 @@
+{%include 'adminheader.html'%}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+  <div class="container" data-aos="fade-up">
+
+    <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+      <div class="col-xl-6 col-lg-8">
+        <h1>WILD ANIMAL DETECTION<span></span></h1>
+        <h2>"The animals of the world exist for their own reasons." </h2>
+        <p>Scroll down to see more content</p>
+        <div class="down-arrow">&#9660;</div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</section><!-- End Hero -->
+
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>WILD ANIMAL DETECTION</h2>
+      <p>FOREST OFFICER ALLOCATION</p>
+    </div>
+    <img src="../static/assets/img/under31.png" style="margin-left: -60px;margin-top:-50px" height="200px" width="400px"
+      alt="">
+
+    <!-- <table>
+    <tr>
+        <th>Slno</th>
+        <th>Divsion Name</th>
+        <th>Station Name</th>
+        <th>Contact Number</th>
+        <th>Place</th>
+    </tr>
+    {%for i in data['view']%}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i['division_name']}}</td>
+        <td>{{i['station_name']}}</td>
+        <td>{{i['contact_number']}}</td>
+        <td>{{i['place']}}</th>
+        <td><a href="/officerallocation?id1={{i['forest_station_id']}}">ASSIGN</a></td>
+       
+
+
+        
+
+    </tr>
+    {%endfor%}
+</table> -->
+
+
+
+    <form action="" method="post">
+      <table align="center" style="width : 800px;" class="table">
+        <tr>
+          <th>SELECT STATION</th>
+          <td><select name="station" id="" style="height: 30px;width:300px">
+              {%for i in data['view']%}
+              <option value="{{i['forest_station_id']}}">{{i['station_name']}}</option>
+              {%endfor%}
+            </select></td>
+        </tr>
+        <tr>
+          <th>SELECT OFFICER</th>
+          <td><select name="off" id="" style="height: 30px;width:300px">
+              {%for i in data['off']%}
+              <option value="{{i['officer_id']}}">{{i['fname']}}</option>
+              {%endfor%}
+
+            </select></td>
+        </tr>
+        <tr>
+          <th></th>
+          <th><input type="submit" class="btn btn-success" name="submit" value="ASSIGN"></th>
+        </tr>
+      </table>
+    </form>
+
+    <img src="../static/assets/img/sep5.png" width="600px" alt="">
+    <img align="right" src="../static/assets/img/sep5.png" width="600px" style="margin-top:-330px" alt="">
+  </div>
+</section>
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>WILD ANIMAL DETECTION</h2>
+      <p>OFFICER'S ALLOCATED</p>
+    </div>
+
+    <table align="center" class="table" style="width: 700px;">
+      <tr>
+        <th>SLNO</th>
+        <th>OFFICER NAME</th>
+        <th>STATION NAME</th>
+      </tr>
+      {%for i in data['allocated']%}
+      <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i['fname']}}{{i['lname']}}</td>
+        <td>{{i['station_name']}}</td>
+        <td><a class="btn btn-danger" href="?action=remove&id={{i['allocate_id']}}">REMOVE</a></td>
+      </tr>
+      {%endfor%}
+    </table>
+
+  </div>
+</section>
+
+<br><br><br><br><br>
+
+
+
+
+
+{%include 'footer.html'%}

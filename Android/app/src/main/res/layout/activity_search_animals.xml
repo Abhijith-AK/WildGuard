@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/homepage2"
+    android:gravity="center"
+    tools:context=".Search_Animals">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="250dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginLeft="100dp"
+        android:text="DETECTED ANIMALS" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+
+        android:layout_height="100dp">
+
+        <EditText
+            android:id="@+id/animal"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:layout_gravity="left"
+            android:layout_marginLeft="0dp"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/edit"
+            android:inputType="text"
+            android:text=""/>
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="-25dp"
+            android:src="@drawable/search"
+           />
+    </LinearLayout>
+
+
+
+
+    <GridView
+        android:id="@+id/grid"
+        android:numColumns="2"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

@@ -1,0 +1,184 @@
+{%include 'adminheader.html'%}
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-xl-6 col-lg-8">
+                <h1>WILD ANIMAL DETECTION<span></span></h1>
+                <h2>"The animals of the world exist for their own reasons." </h2>
+                <p>Scroll down to see more content</p>
+                <div class="down-arrow">&#9660;</div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</section>
+<!-- End Hero -->
+
+
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>WILD ANIMAL DETECTION</h2>
+            <p>WILD ANIMALS</p>
+        </div>
+
+
+
+        <div class="card-container">
+            {% for i in data['view'] %}
+            <div class="card" style="background-image: url(../static/assets/img/bg.png);background-size:contain">
+                <img src="{{i['animal_image']}}" height="100px" width="100px" alt="">
+                <h4>{{ i['fname'] }} {{ i['lname'] }}</h4>
+                <p style="font-size: 20px;"><strong>ANIMAL:</strong> {{ i['animal_name'] }}</p>
+                <p style="font-size: 20px;"><strong>DIVISION:</strong> {{ i['division_name'] }}</p>
+                <div class="btn-container">
+                    <a class="btn btn-success" href="?action=add&id={{i['animal_id']}}">ADD</a>
+
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br><br>
+
+        <!-- <img src="../static/assets/img/sep2.png" height="300px" width="100%" alt=""> -->
+
+
+        <br>
+        <br>
+
+        <!-- <table align="center" style="width : 800px;" class="table">
+        <tr>
+        <th>Forest Divison</th>
+        <th>Animal Name</th>
+        <th>Animal Image</th>
+    </tr>
+    {%for i in data['view']%}
+    <tr>
+        <td>{{i['division_name']}}</td>
+        <td>{{i['animal_name']}}</td>
+        <td><img src="{{i['animal_image']}}" height="100px" width="100px" alt=""></td>
+        <td><a href="?action=add&id={{i['animal_id']}}">ADD</a></td>
+    </tr>
+    {%endfor%}
+</table> -->
+</section>
+<section>
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>WILD ANIMAL DETECTION</h2>
+            <p>PRESERVED ANIMALS</p>
+        </div>
+
+        <div class="card-container">
+            {% for i in data['pview'] %}
+            <div class="card" style="background-image: url(../static/assets/img/bg.png);background-size:contain">
+                <img src="{{i['animal_image']}}" height="100px" width="100px" alt="">
+                <h4>{{ i['fname'] }} {{ i['lname'] }}</h4>
+                <p style="font-size: 20px;"><strong>ANIMAL:</strong> {{ i['animal_name'] }}</p>
+                <p style="font-size: 20px;"><strong>DIVISION:</strong> {{ i['division_name'] }}</p>
+                <div class="btn-container">
+                    <a class="btn btn-danger" href="?action=remove&id={{i['animal_id']}}">REMOVE</a>
+
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- </div><table align="center" style="width : 800px;" class="table">
+    <tr>
+        <th>Slno</th>
+        <th>Animal Name</th>
+        <th>Animal Image</th>
+        <th>Station Name</th>
+    </tr>
+    {%for i in data['pview']%}
+    <tr>        
+        <td>{{loop.index}}</td>
+        <td>{{i['animal_name']}}</td>
+        <td><img src="{{i['animal_image']}}" height="100px" width="100px" alt=""></td>
+        <td>{{i['division_name']}}</th>
+        <td><a href="?action=remove&id={{i['animal_id']}}">REMOVE</a></td>
+    </tr>
+    {%endfor%}
+</table> -->
+    </div>
+
+</section>
+
+
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .card {
+        background-image: url(../static/assets/img/bg2.png);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 10px;
+        width: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .card h4 {
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        margin: 5px 0;
+    }
+
+    .btn-container {
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        margin-right: 5px;
+        text-decoration: none;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    p,
+    h4 {
+        color: white;
+    }
+
+    .card:hover {
+        background-image: url(../static/assets/img/userback2.png);
+        border: 2px red solid;
+    }
+</style>
+
+
+
+{%include 'footer.html'%}

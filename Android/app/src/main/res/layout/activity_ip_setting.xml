@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/homepage2"
+
+    android:orientation="vertical"
+    tools:context=".IpSetting">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:layout_height="wrap_content"
+        android:text="Enter Your IP Address" />
+
+    <EditText
+        android:id="@+id/ettext"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ems="10"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:background="#03D60B"
+        android:paddingLeft="20dp"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_marginTop="10dp"
+        android:background="#D31212"
+        android:textColor="#fff"
+
+        android:layout_height="40dp"
+        android:text="SUBMIT" />
+</LinearLayout>

@@ -1,6 +1,4 @@
-# Project Name
-
-WildGuard
+# WildGuard
 
 ## Description
 
